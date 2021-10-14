@@ -1,4 +1,4 @@
-import 'package:contact_list/ui/contact_list_widget.dart';
+import 'package:contact_list/ui/contact_list_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,12 +11,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Contacts'),
-          centerTitle: true,
+      home: const ContactListScreen(),
+      theme: ThemeData(
+        inputDecorationTheme: InputDecorationTheme(
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
         ),
-        body: const ContactListWidget(),
       ),
     );
   }
