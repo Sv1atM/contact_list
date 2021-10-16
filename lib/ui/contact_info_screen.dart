@@ -66,7 +66,7 @@ class AvatarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Person contact =
-        context.findAncestorStateOfType<_ContactInfoScreenState>()!.contact;
+        context.findAncestorWidgetOfExactType<ContactInfoScreen>()!.contact;
 
     return Center(
       child: Hero(
