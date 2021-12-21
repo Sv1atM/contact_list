@@ -46,7 +46,10 @@ class ContactListScreen extends StatelessWidget {
 }
 
 class SublistTitleWidget extends StatelessWidget {
-  const SublistTitleWidget({Key? key, required this.title}) : super(key: key);
+  const SublistTitleWidget({
+    Key? key,
+    required this.title,
+  }) : super(key: key);
 
   final String title;
 
@@ -67,7 +70,10 @@ class SublistTitleWidget extends StatelessWidget {
 }
 
 class ListItemWidget extends StatefulWidget {
-  const ListItemWidget({Key? key, required this.contact}) : super(key: key);
+  const ListItemWidget({
+    Key? key,
+    required this.contact,
+  }) : super(key: key);
 
   final Person contact;
 
