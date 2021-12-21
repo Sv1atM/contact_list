@@ -14,8 +14,6 @@ class ContactInfoScreen extends StatefulWidget {
 class _ContactInfoScreenState extends State<ContactInfoScreen> {
   late Person contact;
 
-  void _saveContact() => Navigator.of(context).pop(contact);
-
   @override
   void initState() {
     super.initState();
@@ -28,7 +26,7 @@ class _ContactInfoScreenState extends State<ContactInfoScreen> {
       appBar: AppBar(
         actions: [
           TextButton(
-            onPressed: _saveContact,
+            onPressed: () => Navigator.of(context).pop(contact),
             child: const Text(
               'Save',
               style: TextStyle(fontSize: 16, color: Colors.white),
