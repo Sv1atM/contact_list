@@ -3,18 +3,18 @@ import 'package:contact_list/data/person.dart';
 import 'package:contact_list/ui/contact_info_screen.dart';
 import 'package:flutter/material.dart';
 
-class ContactListScreen extends StatefulWidget {
-  const ContactListScreen({Key? key}) : super(key: key);
+class ContactListScreen extends StatelessWidget {
+  const ContactListScreen({
+    Key? key,
+    required this.data,
+  }) : super(key: key);
 
-  @override
-  State<ContactListScreen> createState() => _ContactListScreenState();
-}
-
-class _ContactListScreenState extends State<ContactListScreen> {
-  final contacts = DataProvider().getData();
+  final DataProvider data;
 
   @override
   Widget build(BuildContext context) {
+    final contacts = data.getData();
+
     if (contacts.isEmpty) {
       return const Center(child: Text('Contact list is empty'));
     }
@@ -25,14 +25,15 @@ class _ContactListScreenState extends State<ContactListScreen> {
       ),
       body: ListView.separated(
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
-        itemBuilder: (context, index) => _itemGenerator().elementAt(index),
+        itemBuilder: (context, index) =>
+            _itemGenerator(contacts).elementAt(index),
         separatorBuilder: (context, index) => const SizedBox(height: 20),
-        itemCount: _itemGenerator().length,
+        itemCount: _itemGenerator(contacts).length,
       ),
     );
   }
 
-  Iterable<Widget> _itemGenerator() sync* {
+  Iterable<Widget> _itemGenerator(List<Person> contacts) sync* {
     var sublistTitle = '';
     for (var contact in contacts) {
       if (contact.surname[0].toUpperCase() != sublistTitle) {
@@ -78,7 +79,7 @@ class _ListItemWidgetState extends State<ListItemWidget> {
   late Person contact;
 
   void _favoriteContactToggle() {
-    setState(() => contact.isFavorite = !contact.isFavorite);
+    setState(() => contact = contact.copyWith(isFavorite: !contact.isFavorite));
   }
 
   void _editContactInfo() async {

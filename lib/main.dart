@@ -1,3 +1,4 @@
+import 'package:contact_list/data/data_provider.dart';
 import 'package:contact_list/ui/contact_list_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const ContactListScreen(),
+      home: ContactListScreen(data: DataProvider()),
       theme: ThemeData(
         inputDecorationTheme: InputDecorationTheme(
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),

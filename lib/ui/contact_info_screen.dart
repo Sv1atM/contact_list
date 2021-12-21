@@ -19,7 +19,7 @@ class _ContactInfoScreenState extends State<ContactInfoScreen> {
   @override
   void initState() {
     super.initState();
-    contact = Person.clone(widget.contact);
+    contact = widget.contact.copyWith();
   }
 
   @override
@@ -91,7 +91,7 @@ class NameTextFieldWidget extends StatefulWidget {
 
 class _NameTextFieldWidgetState extends State<NameTextFieldWidget> {
   final controller = TextEditingController();
-  late final Person contact;
+  late Person contact;
 
   @override
   void initState() {
@@ -104,7 +104,9 @@ class _NameTextFieldWidgetState extends State<NameTextFieldWidget> {
   @override
   Widget build(BuildContext context) => TextField(
         controller: controller,
-        onChanged: (text) => contact.name = text,
+        onChanged: (text) => context
+            .findAncestorStateOfType<_ContactInfoScreenState>()!
+            .contact = contact.copyWith(name: text),
         decoration: const InputDecoration(labelText: 'Name'),
         keyboardType: TextInputType.name,
         textCapitalization: TextCapitalization.words,
@@ -142,7 +144,9 @@ class _SurnameTextFieldWidgetState extends State<SurnameTextFieldWidget> {
   @override
   Widget build(BuildContext context) => TextField(
         controller: controller,
-        onChanged: (text) => contact.surname = text,
+        onChanged: (text) => context
+            .findAncestorStateOfType<_ContactInfoScreenState>()!
+            .contact = contact.copyWith(surname: text),
         decoration: const InputDecoration(labelText: 'Surname'),
         keyboardType: TextInputType.name,
         textCapitalization: TextCapitalization.words,
@@ -180,7 +184,9 @@ class _MobileTextFieldWidgetState extends State<MobileTextFieldWidget> {
   @override
   Widget build(BuildContext context) => TextField(
         controller: controller,
-        onChanged: (text) => contact.mobile = int.tryParse(text) ?? 0,
+        onChanged: (text) => context
+            .findAncestorStateOfType<_ContactInfoScreenState>()!
+            .contact = contact.copyWith(mobile: int.tryParse(text) ?? 0),
         decoration: const InputDecoration(
           labelText: 'Mobile',
           prefixText: '+380',
@@ -222,7 +228,9 @@ class _CompanyTextFieldWidgetState extends State<CompanyTextFieldWidget> {
   @override
   Widget build(BuildContext context) => TextField(
         controller: controller,
-        onChanged: (text) => contact.company = text,
+        onChanged: (text) => context
+            .findAncestorStateOfType<_ContactInfoScreenState>()!
+            .contact = contact.copyWith(company: text),
         decoration: const InputDecoration(labelText: 'Company'),
         keyboardType: TextInputType.name,
         textCapitalization: TextCapitalization.words,
@@ -257,7 +265,9 @@ class _BioTextFieldWidgetState extends State<BioTextFieldWidget> {
   @override
   Widget build(BuildContext context) => TextField(
         controller: controller,
-        onChanged: (text) => contact.bio = text.isEmpty ? null : text,
+        onChanged: (text) => context
+            .findAncestorStateOfType<_ContactInfoScreenState>()!
+            .contact = contact.copyWith(bio: text.isEmpty ? null : text),
         decoration: const InputDecoration(labelText: 'Bio'),
         keyboardType: TextInputType.multiline,
         textCapitalization: TextCapitalization.sentences,
