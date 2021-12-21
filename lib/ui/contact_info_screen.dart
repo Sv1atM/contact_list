@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class ContactInfoScreen extends StatefulWidget {
-  const ContactInfoScreen({Key? key, required this.contact}) : super(key: key);
+  const ContactInfoScreen({
+    Key? key,
+    required this.contact,
+  }) : super(key: key);
 
   final Person contact;
 
