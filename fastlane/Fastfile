@@ -16,7 +16,6 @@
 desc "Runs all the widget tests"
   lane :tests do
     Dir.chdir ".." do
-    sh("flutter", "upgrade")
     sh("flutter", "test", "test/contact_list_screen_test.dart")
   end
 end
